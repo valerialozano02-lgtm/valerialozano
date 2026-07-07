@@ -22,6 +22,15 @@
 
   html { scroll-behavior: smooth; }
 
+  /* SCROLL ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-in-delay-1 { transition-delay: 0.1s; }
+  .fade-in-delay-2 { transition-delay: 0.2s; }
+  .fade-in-delay-3 { transition-delay: 0.3s; }
+  .typed-cursor { display: inline-block; color: var(--fuchsia); font-weight: 300; animation: blink 0.8s infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
   body {
     background: var(--white);
     color: var(--black);
@@ -34,7 +43,7 @@
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 200;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.25rem 3rem;
     background: var(--white);
@@ -95,20 +104,16 @@
     color: var(--black);
     margin-bottom: 1.5rem;
   }
-  .hero-name em {
-    font-style: italic;
-    color: var(--fuchsia);
-  }
+  .hero-name em { font-style: italic; color: var(--fuchsia); }
   .hero-bio {
     font-size: 1.05rem;
     color: #555;
     max-width: 420px;
     line-height: 1.8;
     margin-bottom: 2.5rem;
+    min-height: 3.6rem;
   }
-  .hero-cta {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn-primary {
     display: inline-block;
     padding: 0.8rem 2rem;
@@ -142,15 +147,8 @@
     justify-content: flex-end;
     padding: 4rem 3rem;
   }
-  .hero-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-  }
-  .stat {
-    padding: 2rem;
-    border: 1px solid var(--border);
-  }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .stat { padding: 2rem; border: 1px solid var(--border); }
   .stat:nth-child(2) { border-left: none; }
   .stat:nth-child(3) { border-top: none; }
   .stat:nth-child(4) { border-top: none; border-left: none; }
@@ -162,30 +160,11 @@
     color: var(--fuchsia);
     margin-bottom: 0.5rem;
   }
-  .stat-label {
-    font-size: 0.8rem;
-    color: var(--gray);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
+  .stat-label { font-size: 0.8rem; color: var(--gray); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
 
-  .hero-disciplines {
-    padding: 2rem;
-    border: 1px solid var(--border);
-    border-top: none;
-  }
-  .discipline-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray);
-    margin-bottom: 1rem;
-  }
-  .disciplines {
-    display: flex; flex-wrap: wrap; gap: 0.5rem;
-  }
+  .hero-disciplines { padding: 2rem; border: 1px solid var(--border); border-top: none; }
+  .discipline-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-bottom: 1rem; }
+  .disciplines { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .pill {
     display: inline-block;
     padding: 0.35rem 0.9rem;
@@ -196,35 +175,14 @@
     transition: background 0.2s, border-color 0.2s, color 0.2s;
     cursor: default;
   }
-  .pill:hover {
-    background: var(--fuchsia);
-    border-color: var(--fuchsia);
-    color: #fff;
-  }
-  .pill.accent {
-    background: transparent;
-    border-color: var(--border);
-    color: var(--black);
-  }
+  .pill:hover { background: var(--fuchsia); border-color: var(--fuchsia); color: #fff; }
+  .pill.accent { background: transparent; border-color: var(--border); color: var(--black); }
 
   /* SECTION HEADERS */
-  section { padding: 5rem 3rem; }
-  .section-eyebrow {
-    display: flex; align-items: center; gap: 1rem;
-    margin-bottom: 3rem;
-  }
-  .section-eyebrow-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--fuchsia);
-  }
-  .section-eyebrow-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+  section { padding: 5rem 3rem; position: relative; z-index: 1; }
+  .section-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; }
+  .section-eyebrow-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fuchsia); }
+  .section-eyebrow-line { flex: 1; height: 1px; background: var(--border); }
   .section-title {
     font-family: var(--display);
     font-size: clamp(2rem, 4vw, 3.2rem);
@@ -232,13 +190,9 @@
     letter-spacing: -0.02em;
     line-height: 1.1;
     margin-bottom: 1rem;
+    min-height: 3.5rem;
   }
-  .section-subtitle {
-    color: var(--gray);
-    font-size: 1rem;
-    max-width: 480px;
-    margin-bottom: 3rem;
-  }
+  .section-subtitle { color: var(--gray); font-size: 1rem; max-width: 480px; margin-bottom: 3rem; }
 
   /* WORK GRID */
   #work { border-top: 1px solid var(--border); }
@@ -271,39 +225,11 @@
   }
   .project-card:hover::before { transform: scaleX(1); }
   .project-card:hover { background: #fafafa; }
-  .project-cat {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--fuchsia);
-    margin-bottom: 0.75rem;
-  }
-  .project-title {
-    font-family: var(--display);
-    font-size: 1.2rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 0.75rem;
-    color: var(--black);
-  }
-  .project-desc {
-    font-size: 0.88rem;
-    color: var(--gray);
-    line-height: 1.7;
-    margin-bottom: 1.25rem;
-    flex: 1;
-  }
-  .project-tags {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
-  }
-  .tag {
-    font-size: 0.72rem;
-    padding: 0.2rem 0.6rem;
-    background: #f0f0ee;
-    color: #555;
-    font-weight: 500;
-  }
+  .project-cat { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fuchsia); margin-bottom: 0.75rem; }
+  .project-title { font-family: var(--display); font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75rem; color: var(--black); }
+  .project-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.7; margin-bottom: 1.25rem; flex: 1; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { font-size: 0.72rem; padding: 0.2rem 0.6rem; background: #f0f0ee; color: #555; font-weight: 500; }
   .project-link {
     display: inline-block;
     margin-top: 1rem;
@@ -319,93 +245,30 @@
   .project-link:hover { border-color: var(--fuchsia); }
   .project-link::after { content: ' →'; }
 
-  /* Featured card removed - all cards uniform */
-
   /* ABOUT */
-  #about {
-    border-top: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-  }
-  .about-body {
-    font-size: 1rem;
-    color: #444;
-    line-height: 1.9;
-  }
+  #about { border-top: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-body { font-size: 1rem; color: #444; line-height: 1.9; }
   .about-body p + p { margin-top: 1rem; }
   .highlight { color: var(--fuchsia); font-weight: 600; }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border: 1px solid var(--border);
-  }
-  .skill-item {
-    padding: 1.25rem;
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    font-size: 0.88rem;
-    color: var(--black);
-    font-weight: 500;
-  }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); }
+  .skill-item { padding: 1.25rem; border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); font-size: 0.88rem; color: var(--black); font-weight: 500; }
   .skill-item:nth-child(even) { border-right: none; }
-  .skill-item .skill-icon {
-    display: block;
-    font-size: 0.7rem;
-    color: var(--fuchsia);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.25rem;
-  }
+  .skill-item .skill-icon { display: block; font-size: 0.7rem; color: var(--fuchsia); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.25rem; }
 
   /* CONTACT */
-  #contact {
-    border-top: 1px solid var(--border);
-    text-align: center;
-    padding: 6rem 3rem;
-    background: var(--black);
-    color: var(--white);
-  }
+  #contact { border-top: 1px solid var(--border); text-align: center; padding: 6rem 3rem; background: var(--black); color: var(--white); }
   #contact .section-eyebrow-label { color: var(--fuchsia-light); }
   #contact .section-eyebrow-line { background: #333; }
   #contact .section-title { color: var(--white); }
   #contact .section-subtitle { color: #aaa; margin: 0 auto 2.5rem; max-width: 440px; }
-  .contact-links {
-    display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
-  }
-  .contact-link {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    border: 1.5px solid #444;
-    color: var(--white);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-  }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .contact-link { display: inline-block; padding: 0.8rem 2rem; border: 1.5px solid #444; color: var(--white); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
   .contact-link:hover { border-color: var(--fuchsia-light); color: var(--fuchsia-light); }
-  .contact-link.primary {
-    background: var(--fuchsia);
-    border-color: var(--fuchsia);
-    color: #fff;
-  }
+  .contact-link.primary { background: var(--fuchsia); border-color: var(--fuchsia); color: #fff; }
   .contact-link.primary:hover { background: var(--fuchsia-light); border-color: var(--fuchsia-light); }
 
   /* FOOTER */
-  footer {
-    background: var(--black);
-    border-top: 1px solid #222;
-    padding: 1.5rem 3rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  footer { background: var(--black); border-top: 1px solid #222; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
   footer p { font-size: 0.78rem; color: #555; }
   footer span { color: var(--fuchsia); }
 
@@ -433,7 +296,7 @@
         <clipPath id="sc"><polygon points="140,8 158,95 248,95 178,148 204,235 140,182 76,235 102,148 32,95 122,95"/></clipPath>
       </defs>
       <polygon points="140,8 158,95 248,95 178,148 204,235 140,182 76,235 102,148 32,95 122,95" fill="#0a0a0a"/>
-      <text x="134" y="182" font-family="Playfair Display, Georgia, serif" font-size="115" font-weight="900" font-style="italic" text-anchor="middle" clip-path="url(#sc)" letter-spacing="2"><tspan fill="#f8f8f5">V</tspan><tspan fill="#e8007a">L</tspan></text>
+      <text x="134" y="182" font-family="Playfair Display, Georgia, serif" font-size="115" font-weight="900" font-style="italic" text-anchor="middle" clip-path="url(#sc)" letter-spacing="2"><tspan fill="#f8f8f5">V</tspan><tspan fill="#c0145e">L</tspan></text>
     </svg>
     Valeria<span> Lozano</span>
   </a>
@@ -450,7 +313,7 @@
   <div class="hero-left">
     <span class="hero-tag" data-en="Portfolio" data-es="Portafolio">Portfolio</span>
     <h1 class="hero-name">Valeria<br><em>Lozano</em><br></h1>
-    <p class="hero-bio" data-en="Marketing strategist and creative with a foundation in research and data. I build campaigns, dashboards, and visuals where the findings speak for themselves." data-es="Estratega de marketing y creativa con bases en investigación y datos. Construyo campañas, dashboards y visuales donde los resultados hablan por sí solos.">Marketing strategist and creative with a foundation in research and data. I build campaigns, dashboards, and visuals where the findings speak for themselves.</p>
+    <p class="hero-bio"><span id="typedText"></span><span class="typed-cursor">|</span></p>
     <div class="hero-cta">
       <a href="#work" class="btn-primary" data-en="View my work" data-es="Ver mi trabajo">View my work</a>
       <a href="#contact" class="btn-outline" data-en="Get in touch" data-es="Contáctame">Get in touch</a>
@@ -492,17 +355,15 @@
 
 <!-- WORK -->
 <section id="work">
-  <div class="section-eyebrow">
+  <div class="section-eyebrow fade-in">
     <span class="section-eyebrow-label" data-en="Selected work" data-es="Trabajo seleccionado">Selected work</span>
     <div class="section-eyebrow-line"></div>
   </div>
-  <h2 class="section-title" data-en="Projects that<br>define my practice." data-es="Proyectos que<br>definen mi práctica.">Projects that<br>define my practice.</h2>
-  <p class="section-subtitle" data-en="A mix of strategy, data, and design — each one built with intention." data-es="Una mezcla de estrategia, datos y diseño — cada uno construido con intención.">A mix of strategy, data, and design — each one built with intention.</p>
+  <h2 class="section-title fade-in fade-in-delay-1"><span id="typedWork"></span><span class="typed-cursor">|</span></h2>
+  <p class="section-subtitle fade-in fade-in-delay-2" data-en="A mix of strategy, data, and design — each one built with intention." data-es="Una mezcla de estrategia, datos y diseño — cada uno construido con intención.">A mix of strategy, data, and design — each one built with intention.</p>
 
   <div class="work-grid">
-
-    <!-- Amazon Prime -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Integrated Marketing / Group Project" data-es="Marketing Integrado / Proyecto Grupal">Integrated Marketing / Group Project</div>
       <div class="project-title" data-en="Amazon Prime — &quot;Prime Friends&quot; Campaign" data-es="Amazon Prime — Campaña &quot;Prime Friends&quot;">Amazon Prime — "Prime Friends" Campaign</div>
       <div class="project-desc" data-en="A full integrated marketing and communications plan developed for the Effie Competition, addressing Amazon Prime's Gen Z retention challenge. Proposed a shared subscription model (&quot;Prime Friends&quot;) backed by primary research, SWOT and PESTEL analysis, a $5M budget allocation, and a multi-channel campaign strategy targeting 18–24-year-olds across TikTok, Instagram, and YouTube." data-es="Un plan completo de marketing y comunicación integrado desarrollado para la Competencia Effie, abordando el reto de retención de la Generación Z para Amazon Prime. Se propuso un modelo de suscripción compartida (&quot;Prime Friends&quot;) respaldado por investigación primaria, análisis SWOT y PESTEL, una asignación de presupuesto de $5M, y una estrategia de campaña multicanal dirigida a jóvenes de 18 a 24 años en TikTok, Instagram y YouTube.">A full integrated marketing and communications plan developed for the Effie Competition, addressing Amazon Prime's Gen Z retention challenge. Proposed a shared subscription model ("Prime Friends") backed by primary research, SWOT and PESTEL analysis, a $5M budget allocation, and a multi-channel campaign strategy targeting 18–24-year-olds across TikTok, Instagram, and YouTube.</div>
@@ -517,8 +378,7 @@
       <a href="https://drive.google.com/file/d/14ZtPCd4DLyjoXehHyX5-POlLG6tCJPVN/view?usp=sharing" target="_blank" class="project-link" data-en="View project" data-es="Ver proyecto">View project</a>
     </div>
 
-    <!-- Card -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Data Visualization / RStudio" data-es="Visualización de Datos / RStudio">Data Visualization / RStudio</div>
       <div class="project-title" data-en="Oklahoma Health Dashboard — Integris Health" data-es="Dashboard de Salud de Oklahoma — Integris Health">Oklahoma Health Dashboard — Integris Health</div>
       <div class="project-desc" data-en="A collaborative final project built for Integris Health, examining how Oklahoma's overall health compares across U.S. states and how it has changed over time. Developed as a group using RStudio and published via Netlify." data-es="Un proyecto final colaborativo desarrollado para Integris Health, examinando cómo la salud general de Oklahoma se compara con otros estados de EE. UU. y cómo ha cambiado con el tiempo. Desarrollado en grupo usando RStudio y publicado en Netlify.">A collaborative final project built for Integris Health, examining how Oklahoma's overall health compares across U.S. states and how it has changed over time. Developed as a group using RStudio and published via Netlify.</div>
@@ -531,8 +391,7 @@
       <a href="https://dat4313-sp26-group1.netlify.app/" target="_blank" class="project-link" data-en="View live" data-es="Ver en vivo">View live</a>
     </div>
 
-    <!-- Dashboard -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Data Visualization / RStudio" data-es="Visualización de Datos / RStudio">Data Visualization / RStudio</div>
       <div class="project-title" data-en="Visual Dashboard Design — ACME Dataset" data-es="Diseño Visual de Dashboard — Conjunto de Datos ACME">Visual Dashboard Design — ACME Dataset</div>
       <div class="project-desc" data-en="An interactive dashboard built in RStudio demonstrating best practices in data visualization and aesthetic dashboard design, using a fictional ACME corporate dataset as the foundation." data-es="Un dashboard interactivo construido en RStudio que demuestra las mejores prácticas en visualización de datos y diseño estético de dashboards, usando un conjunto de datos corporativo ficticio de ACME como base.">An interactive dashboard built in RStudio demonstrating best practices in data visualization and aesthetic dashboard design, using a fictional ACME corporate dataset as the foundation.</div>
@@ -543,8 +402,7 @@
       <a href="https://lab9dashvl.netlify.app/" target="_blank" class="project-link" data-en="View live" data-es="Ver en vivo">View live</a>
     </div>
 
-    <!-- Slides -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Data Visualization / RStudio" data-es="Visualización de Datos / RStudio">Data Visualization / RStudio</div>
       <div class="project-title" data-en="Michelin Star Restaurants — New York State" data-es="Restaurantes con Estrella Michelin — Estado de Nueva York">Michelin Star Restaurants — New York State</div>
       <div class="project-desc" data-en="An interactive map built in RStudio exploring the geographic distribution of Michelin-starred restaurants across New York State. Sourced from a global Michelin dataset and enriched with U.S. Census Bureau data via API to provide state-level geographic context." data-es="Un mapa interactivo construido en RStudio que explora la distribución geográfica de restaurantes con estrella Michelin en el estado de Nueva York. Obtenido de un conjunto de datos global de Michelin y enriquecido con datos del Censo de EE. UU. vía API para brindar contexto geográfico a nivel estatal.">An interactive map built in RStudio exploring the geographic distribution of Michelin-starred restaurants across New York State. Sourced from a global Michelin dataset and enriched with U.S. Census Bureau data via API to provide state-level geographic context.</div>
@@ -557,7 +415,7 @@
       <a href="https://lab72vl.netlify.app/about" target="_blank" class="project-link" data-en="View live" data-es="Ver en vivo">View live</a>
     </div>
 
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Statistical Modeling / RStudio" data-es="Modelado Estadístico / RStudio">Statistical Modeling / RStudio</div>
       <div class="project-title" data-en="Predicting Arrests — Regression Model" data-es="Predicción de Arrestos — Modelo de Regresión">Predicting Arrests — Regression Model</div>
       <div class="project-desc" data-en="A multiple regression model built on 1996 crime data from 2,197 communities to predict arrest rates. Five variables — population, density, income, race composition, and youth population — collectively explained 65% of arrest variation, with population as the strongest predictor." data-es="Un modelo de regresión múltiple construido sobre datos de criminalidad de 1996 provenientes de 2,197 comunidades para predecir tasas de arresto. Cinco variables — población, densidad, ingresos, composición racial y población juvenil — explicaron en conjunto el 65% de la variación en arrestos, siendo la población el predictor más fuerte.">A multiple regression model built on 1996 crime data from 2,197 communities to predict arrest rates. Five variables — population, density, income, race composition, and youth population — collectively explained 65% of arrest variation, with population as the strongest predictor.</div>
@@ -570,8 +428,7 @@
       <a href="https://lab6vl.netlify.app/" target="_blank" class="project-link" data-en="View live" data-es="Ver en vivo">View live</a>
     </div>
 
-    <!-- Creative Writing -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Marketing Analytics / RStudio" data-es="Análisis de Marketing / RStudio">Marketing Analytics / RStudio</div>
       <div class="project-title" data-en="Customer Segmentation Analysis — Mas Mart" data-es="Análisis de Segmentación de Clientes — Mas Mart">Customer Segmentation Analysis — Mas Mart</div>
       <div class="project-desc" data-en="A deep-dive segmentation analysis of Mas Mart's customer base, built to equip an incoming CMO with actionable insights on audience behavior and strategic direction for future campaign planning." data-es="Un análisis profundo de segmentación de la base de clientes de Mas Mart, diseñado para brindar a una nueva CMO información práctica sobre el comportamiento de la audiencia y dirección estratégica para futuras campañas.">A deep-dive segmentation analysis of Mas Mart's customer base, built to equip an incoming CMO with actionable insights on audience behavior and strategic direction for future campaign planning.</div>
@@ -584,8 +441,7 @@
       <a href="https://lab5jbuvl.netlify.app/about" target="_blank" class="project-link" data-en="View live" data-es="Ver en vivo">View live</a>
     </div>
 
-    <!-- Graphs project -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Data Visualization / RStudio" data-es="Visualización de Datos / RStudio">Data Visualization / RStudio</div>
       <div class="project-title" data-en="Graph Analysis — Retail Behavior & Global Economics" data-es="Análisis de Gráficos — Comportamiento Minorista y Economía Global">Graph Analysis — Retail Behavior & Global Economics</div>
       <div class="project-desc" data-en="A multi-graph presentation examining variable relationships across two domains: customer retail behavior with segmentation insights, and a cross-country comparison of GDP and the Human Capital Index." data-es="Una presentación con múltiples gráficos que examina relaciones entre variables en dos áreas: comportamiento minorista del cliente con información de segmentación, y una comparación entre países del PIB y el Índice de Capital Humano.">A multi-graph presentation examining variable relationships across two domains: customer retail behavior with segmentation insights, and a cross-country comparison of GDP and the Human Capital Index.</div>
@@ -598,8 +454,7 @@
       <a href="https://lm42valerialozano.netlify.app/about" target="_blank" class="project-link" data-en="View live" data-es="Ver en vivo">View live</a>
     </div>
 
-    <!-- McDonald's -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Marketing Strategy / Group Project" data-es="Estrategia de Marketing / Proyecto Grupal">Marketing Strategy / Group Project</div>
       <div class="project-title" data-en="McDonald's Corporation — Healthy Menu Marketing Plan" data-es="Corporación McDonald's — Plan de Marketing de Menú Saludable">McDonald's Corporation — Healthy Menu Marketing Plan</div>
       <div class="project-desc" data-en="A comprehensive marketing plan developed for McDonald's Principles of Marketing course at John Brown University, proposing a new health-conscious menu to improve brand perception and expand market share. Included SWOT and competitor analysis, target market segmentation, a full 4P marketing mix, and a phased implementation timeline. Research sourced through Mintel and IBISWorld." data-es="Un plan de marketing integral desarrollado para el curso de Principios de Marketing en John Brown University, proponiendo un nuevo menú saludable para mejorar la percepción de la marca y expandir la participación de mercado. Incluyó análisis SWOT y de competidores, segmentación de mercado objetivo, una mezcla de marketing completa de las 4P, y un cronograma de implementación por fases. Investigación obtenida a través de Mintel e IBISWorld.">A comprehensive marketing plan developed for McDonald's Principles of Marketing course at John Brown University, proposing a new health-conscious menu to improve brand perception and expand market share. Included SWOT and competitor analysis, target market segmentation, a full 4P marketing mix, and a phased implementation timeline. Research sourced through Mintel and IBISWorld.</div>
@@ -613,8 +468,7 @@
       <a href="https://drive.google.com/file/d/1nCsOyBvWqYl5jE-uAuwcM4yMCRoAdb8x/view?usp=sharing" target="_blank" class="project-link" data-en="View project" data-es="Ver proyecto">View project</a>
     </div>
 
-    <!-- Creative Writing -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Creative Writing" data-es="Escritura Creativa">Creative Writing</div>
       <div class="project-title" data-en="Only One Left Dancing" data-es="Only One Left Dancing">Only One Left Dancing</div>
       <div class="project-desc" data-en="A short story reimagining the Twelve Dancing Princesses fairy tale — the eldest princess has fled her life under a false identity, making a quiet life as a ballet dancer in Soviet-era Moscow, until a KGB officer starts paying too close attention." data-es="Un cuento corto que reimagina el cuento de hadas de Las doce princesas bailarinas — la princesa mayor ha huido de su vida bajo una identidad falsa, llevando una vida tranquila como bailarina de ballet en la Moscú soviética, hasta que un oficial de la KGB comienza a prestarle demasiada atención.">A short story reimagining the Twelve Dancing Princesses fairy tale — the eldest princess has fled her life under a false identity, making a quiet life as a ballet dancer in Soviet-era Moscow, until a KGB officer starts paying too close attention.</div>
@@ -626,8 +480,7 @@
       <a href="https://drive.google.com/file/d/16WpZXNsw_5unfNCN9cYfIvNEiT2sWOAH/view?usp=sharing" target="_blank" class="project-link" data-en="Read it" data-es="Leerlo">Read it</a>
     </div>
 
-    <!-- Poem -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Creative Writing" data-es="Escritura Creativa">Creative Writing</div>
       <div class="project-title" data-en="Antonia" data-es="Antonia">Antonia</div>
       <div class="project-desc" data-en="A free verse poem written as an ode to my grandmother — a portrait built in small, specific details: magnolia summers, a wide tooth comb, Tuesday yoga mats, rings now the same size as mine." data-es="Un poema en verso libre escrito como oda a mi abuela — un retrato construido a partir de pequeños detalles específicos: veranos de magnolia, un peine de dientes anchos, tapetes de yoga los martes, anillos ahora del mismo tamaño que los míos.">A free verse poem written as an ode to my grandmother — a portrait built in small, specific details: magnolia summers, a wide tooth comb, Tuesday yoga mats, rings now the same size as mine.</div>
@@ -639,8 +492,7 @@
       <a href="https://drive.google.com/file/d/1-zFJkBCoV3NCwyPhabqJUYDcsg8_D_bM/view?usp=sharing" target="_blank" class="project-link" data-en="Read it" data-es="Leerlo">Read it</a>
     </div>
 
-    <!-- Star Girl Logo -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Graphic Design / Adobe Illustrator" data-es="Diseño Gráfico / Adobe Illustrator">Graphic Design / Adobe Illustrator</div>
       <div class="project-title" data-en="Star Girl — Logo Design" data-es="Star Girl — Diseño de Logo">Star Girl — Logo Design</div>
       <div class="project-desc" data-en="A logo concept inspired by grunge aesthetics and Y2K visual culture, with references drawn from Pinterest. Built in Adobe Illustrator using custom typographic letterforms shaped into a star silhouette, delivered in four colorway variations: black, white, deep purple, and lavender." data-es="Un concepto de logo inspirado en estética grunge y cultura visual Y2K, con referencias obtenidas de Pinterest. Construido en Adobe Illustrator usando formas tipográficas personalizadas moldeadas en una silueta de estrella, entregado en cuatro variaciones de color: negro, blanco, morado profundo y lavanda.">A logo concept inspired by grunge aesthetics and Y2K visual culture, with references drawn from Pinterest. Built in Adobe Illustrator using custom typographic letterforms shaped into a star silhouette, delivered in four colorway variations: black, white, deep purple, and lavender.</div>
@@ -653,8 +505,7 @@
       <a href="https://drive.google.com/file/d/18CG1iu481j8Vn__1j7YC-16WCdYG495Q/view?usp=sharing" target="_blank" class="project-link" data-en="View project" data-es="Ver proyecto">View project</a>
     </div>
 
-    <!-- Magazine Spread -->
-    <div class="project-card">
+    <div class="project-card fade-in">
       <div class="project-cat" data-en="Graphic Design / Adobe InDesign" data-es="Diseño Gráfico / Adobe InDesign">Graphic Design / Adobe InDesign</div>
       <div class="project-title" data-en="In Situ — Magazine Spread" data-es="In Situ — Reportaje de Revista">In Situ — Magazine Spread</div>
       <div class="project-desc" data-en="A four-page editorial magazine spread designed in Adobe InDesign about the Abila Archaeological Project, an active excavation site in northern Jordan. The layout covers the site's history from the Chalcolithic period through the Byzantine era, blending editorial typography, archival photography, and structured layout design." data-es="Un reportaje editorial de revista de cuatro páginas diseñado en Adobe InDesign sobre el Proyecto Arqueológico de Abila, un sitio de excavación activo en el norte de Jordania. El diseño cubre la historia del sitio desde el período Calcolítico hasta la era Bizantina, combinando tipografía editorial, fotografía de archivo y diseño de layout estructurado.">A four-page editorial magazine spread designed in Adobe InDesign about the Abila Archaeological Project, an active excavation site in northern Jordan. The layout covers the site's history from the Chalcolithic period through the Byzantine era, blending editorial typography, archival photography, and structured layout design.</div>
@@ -666,18 +517,17 @@
       </div>
       <a href="https://drive.google.com/file/d/1MwF1IfcF5zWEI_eNQmFcchhRUVn7Vu0G/view?usp=sharing" target="_blank" class="project-link" data-en="View project" data-es="Ver proyecto">View project</a>
     </div>
-
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
   <div>
-    <div class="section-eyebrow">
+    <div class="section-eyebrow fade-in">
       <span class="section-eyebrow-label" data-en="About me" data-es="Acerca de mí">About me</span>
       <div class="section-eyebrow-line"></div>
     </div>
-    <h2 class="section-title" data-en="Strategy meets<br>creativity." data-es="Donde la estrategia<br>se encuentra con la creatividad.">Strategy meets<br>creativity.</h2>
+    <h2 class="section-title fade-in fade-in-delay-1"><span id="typedAbout"></span><span class="typed-cursor">|</span></h2>
     <div class="about-body">
       <p id="aboutP1">I hold a <span class="highlight">Bachelor of Science in Integrated Marketing Communications from John Brown University</span>, with a passion for research and how data can inform smarter, more meaningful strategy. My academic work spans integrated marketing plans, consumer research, data visualization, and statistical modeling — across industries, formats, and scales.</p>
       <p id="aboutP2">Outside of marketing, I write short stories and poems. Storytelling in every form has always been where I feel most at home. When I'm not working, you'll find me deep in a romance novel, watching history documentaries (Egyptian history especially — I will absolutely geek out about it), or wandering through an art museum longer than anyone expected.</p>
@@ -685,7 +535,7 @@
     </div>
   </div>
   <div>
-    <div class="section-eyebrow" style="margin-bottom: 1.5rem;">
+    <div class="section-eyebrow fade-in" style="margin-bottom: 1.5rem;">
       <span class="section-eyebrow-label" data-en="Skills & tools" data-es="Habilidades y herramientas">Skills & tools</span>
       <div class="section-eyebrow-line"></div>
     </div>
@@ -740,13 +590,13 @@
   <div class="contact-links">
     <a href="mailto:valeriaisabellozano@icloud.com" class="contact-link primary" data-en="Email me" data-es="Escríbeme">Email me</a>
     <a href="https://www.linkedin.com/in/valeriailozano" target="_blank" class="contact-link" data-en="LinkedIn" data-es="LinkedIn">LinkedIn</a>
-<a href="https://drive.google.com/file/d/1Zj0-EUW4V6svLFCXn10_XWQ4ZQCi689k/view?usp=sharing" target="_blank" class="contact-link" data-en="Resume" data-es="Currículum">Resume</a>
+    <a href="https://drive.google.com/file/d/1Zj0-EUW4V6svLFCXn10_XWQ4ZQCi689k/view?usp=sharing" target="_blank" class="contact-link" data-en="Resume" data-es="Currículum">Resume</a>
   </div>
 </section>
 
 <footer>
   <p>© 2025 <span>Valeria Lozano</span>. <span data-en="All rights reserved." data-es="Todos los derechos reservados.">All rights reserved.</span></p>
-<p><span data-en="Built with intention" data-es="Construido con intención">Built with intention</span> · <span style="font-style: italic;" data-en="Romans 8:18" data-es="Romanos 8:18">Romans 8:18</span></p>
+  <p><span data-en="Built with intention" data-es="Construido con intención">Built with intention</span> · <span style="font-style: italic;" data-en="Romans 8:18" data-es="Romanos 8:18">Romans 8:18</span></p>
 </footer>
 
 <script>
@@ -761,19 +611,36 @@
     }
   };
 
+  const phrasesEN = [
+    "Marketing strategist and creative with a foundation in research and data.",
+    "I build campaigns, dashboards, and visuals where the findings speak for themselves.",
+    "Researcher. Designer. Storyteller.",
+    "Bilingual. Analytical. Creative."
+  ];
+  const phrasesES = [
+    "Estratega de marketing y creativa con bases en investigación y datos.",
+    "Construyo campañas, dashboards y visuales donde los resultados hablan por sí solos.",
+    "Investigadora. Diseñadora. Narradora.",
+    "Bilingüe. Analítica. Creativa."
+  ];
+  const aboutPhrasesEN = ["Strategy meets creativity.","Research meets design.","Data meets storytelling.","Marketing meets art."];
+  const aboutPhrasesES = ["Estrategia y creatividad.","Investigación y diseño.","Datos y narrativa.","Marketing y arte."];
+
   let currentLang = 'en';
   const langToggle = document.getElementById('langToggle');
   const html = document.documentElement;
+
+  let phraseIndex = 0, charIndex = 0, isDeleting = false, typingSpeed = 45;
+  let aboutPhraseIndex = 0, aboutCharIndex = 0, aboutDeleting = false, aboutSpeed = 60;
+
+  function getPhrases() { return currentLang === 'en' ? phrasesEN : phrasesES; }
+  function getAboutPhrases() { return currentLang === 'en' ? aboutPhrasesEN : aboutPhrasesES; }
 
   function applyLanguage(lang) {
     document.querySelectorAll('[data-en]').forEach(el => {
       const text = el.getAttribute(lang === 'en' ? 'data-en' : 'data-es');
       if (text !== null) {
-        if (text.includes('<br>')) {
-          el.innerHTML = text;
-        } else {
-          el.textContent = text;
-        }
+        if (text.includes('<br>')) { el.innerHTML = text; } else { el.textContent = text; }
       }
     });
     const aboutP1 = document.getElementById('aboutP1');
@@ -782,11 +649,58 @@
     if (aboutP2) aboutP2.innerHTML = aboutTranslations[lang].p2;
     html.lang = lang;
     currentLang = lang;
+    phraseIndex = 0; charIndex = 0; isDeleting = false;
+    aboutPhraseIndex = 0; aboutCharIndex = 0; aboutDeleting = false;
   }
 
-  langToggle.addEventListener('click', () => {
-    applyLanguage(currentLang === 'en' ? 'es' : 'en');
-  });
+  langToggle.addEventListener('click', () => { applyLanguage(currentLang === 'en' ? 'es' : 'en'); });
+
+  /* SCROLL ANIMATIONS */
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+      else { entry.target.classList.remove('visible'); }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  /* TYPED TEXT - HERO */
+  const typedEl = document.getElementById('typedText');
+  function typeText() {
+    const phrases = getPhrases();
+    const current = phrases[phraseIndex];
+    if (!isDeleting) { typedEl.textContent = current.substring(0, charIndex + 1); charIndex++; if (charIndex === current.length) { isDeleting = true; typingSpeed = 30; setTimeout(typeText, 2000); return; } }
+    else { typedEl.textContent = current.substring(0, charIndex - 1); charIndex--; if (charIndex === 0) { isDeleting = false; phraseIndex = (phraseIndex + 1) % phrases.length; typingSpeed = 45; } }
+    setTimeout(typeText, typingSpeed);
+  }
+  typeText();
+
+  /* TYPED TEXT - ABOUT */
+  const typedAboutEl = document.getElementById('typedAbout');
+  function typeAbout() {
+    const phrases = getAboutPhrases();
+    const current = phrases[aboutPhraseIndex];
+    if (!aboutDeleting) { typedAboutEl.textContent = current.substring(0, aboutCharIndex + 1); aboutCharIndex++; if (aboutCharIndex === current.length) { aboutDeleting = true; aboutSpeed = 40; setTimeout(typeAbout, 2200); return; } }
+    else { typedAboutEl.textContent = current.substring(0, aboutCharIndex - 1); aboutCharIndex--; if (aboutCharIndex === 0) { aboutDeleting = false; aboutPhraseIndex = (aboutPhraseIndex + 1) % phrases.length; aboutSpeed = 60; } }
+    setTimeout(typeAbout, aboutSpeed);
+  }
+  typeAbout();
+
+  /* TYPED TEXT - WORK */
+  const typedWorkEl = document.getElementById('typedWork');
+  const workPhrasesEN = ["Projects that define my practice."];
+  const workPhrasesES = ["Proyectos que definen mi práctica."];
+  let workPhraseIndex = 0, workCharIndex = 0, workDeleting = false, workSpeed = 60;
+  function getWorkPhrases() { return currentLang === 'en' ? workPhrasesEN : workPhrasesES; }
+  function typeWork() {
+    const phrases = getWorkPhrases();
+    const current = phrases[workPhraseIndex];
+    if (!workDeleting) { typedWorkEl.textContent = current.substring(0, workCharIndex + 1); workCharIndex++; if (workCharIndex === current.length) { workDeleting = true; workSpeed = 40; setTimeout(typeWork, 2200); return; } }
+    else { typedWorkEl.textContent = current.substring(0, workCharIndex - 1); workCharIndex--; if (workCharIndex === 0) { workDeleting = false; workPhraseIndex = (workPhraseIndex + 1) % phrases.length; workSpeed = 60; } }
+    setTimeout(typeWork, workSpeed);
+  }
+  typeWork();
 </script>
 
 </body>
